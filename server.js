@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 app.use(cors({
-    origin: ["http://localhost:3000", "https://your-frontend-domain.com"],
+    origin: ["http://localhost:3000",  "https://udyam-demo-backend.onrender.com"],
     credentials: true
 }));
 app.use(bodyParser.json());
