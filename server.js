@@ -10,9 +10,23 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5001;
 
+const allowedOrigins = [
+  "https://udyam-form-frontend-git-main-riteshs-projects-2073aec2.vercel.app",
+  // add other allowed origins if needed
+];
+
 app.use(cors({
-    origin: [  "https://udyam-demo-backend.onrender.com","http://localhost:3000",],
-    credentials: true
+  origin: function(origin, callback) {
+    // allow requests with no origin like curl or postman
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true,
 }));
 app.use(bodyParser.json());
 
