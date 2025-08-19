@@ -16,10 +16,9 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: function(origin, callback) {
-    // allow requests with no origin like curl or postman
-origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+  origin: "*", // or your custom logic
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true
 }));
 app.use(bodyParser.json());
 
